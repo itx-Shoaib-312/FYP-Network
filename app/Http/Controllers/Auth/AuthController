@@ -1,0 +1,45 @@
+<?php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class CustomAuthController extends Controller
+{
+    // Show the default login form
+    public function showLoginForm()
+    {
+        $userRole = Auth::check() ? Auth::user()->role : null; 
+        return view('auth.login', compact('userRole'));
+    }
+
+    // Show the admin login form
+    public function showAdminLoginForm()
+    {
+        return view('auth.admin-login');
+    }
+
+    // Show another login form
+    public function showOtherLoginForm()
+    {
+        return view('auth.other-login');
+    }
+
+    // Handle authentication for default login
+    public function login(Request $request)
+    {
+        // Your authentication logic for default login
+    }
+
+    // Handle authentication for admin login
+    public function adminLogin(Request $request)
+    {
+        // Your authentication logic for admin login
+    }
+
+    // Handle authentication for another login
+    public function otherLogin(Request $request)
+    {
+        // Your authentication logic for other login
+    }
+}
