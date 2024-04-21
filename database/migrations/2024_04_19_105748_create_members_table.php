@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('selection_id')->constrained('selections')->cascadeOnDelete();
-            $table->unsignedInteger('member_no_1');
-            $table->unsignedInteger('member_no_2');
-            $table->unsignedInteger('member_no_3');
+            $table->string('group_member_1', 20)->nullable();
+            $table->string('group_member_2', 20)->nullable();
+            $table->string('group_member_3', 20)->nullable();
+
+            $table->string('group_member_1_name', 20)->nullable();
+            $table->string('group_member_2_name', 20)->nullable();
+            $table->string('group_member_3_name', 20)->nullable();
             $table->timestamps();
         });
     }
