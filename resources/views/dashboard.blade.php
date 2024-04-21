@@ -13,6 +13,10 @@
 
 
     <!--bootstrap css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-HmP5l7VbZo63QKuUGrj7BMmwlREoAy8oSZyj" crossorigin="anonymous">
+
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +27,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&amp;display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+
+
     <!--main css-->
+
 
 
     <link href="sass/main.css" rel="stylesheet">
@@ -364,7 +371,7 @@
                     </a>
                 </li>
                 <li class="py-2 list-item">
-                    <a href="/usersupport" class="has-arrow">
+                    <a href="/student-contact" class="has-arrow">
                         <div class="parent-icon"><i class='bx bx-cog'></i>
                         </div>
                         <div class="menu-title">User Support</div>
@@ -433,8 +440,12 @@
     </div>
 
     <!--plugins-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
     <script src="assets/js/jquery.min.js"></script>
-    <!--plugins-->
+
     <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
 
     <script src="assets/js/index.js"></script>
