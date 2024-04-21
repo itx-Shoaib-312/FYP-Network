@@ -25,6 +25,7 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
     <!--main css-->
 
+
     <link href="sass/main.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -34,6 +35,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/styleus.css') }}">
+    
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
@@ -257,7 +259,7 @@
             <!--navigation-->
             <ul class="metismenu list  " id="sidenav">
                 <li class="py-2 list-item">
-                    <a href="javascript:;" class="has-arrow">
+                    <a href="{{ route('dashboard') }}" class="has-arrow">
                         <div class="parent-icon"><i class='bx bxs-home'></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
@@ -324,7 +326,8 @@
                         </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item text-white" href="{{ route('announcement.index') }}">Announcement List</a>
+                            <a class="dropdown-item text-white" href="{{ route('announcement.index') }}">Announcement
+                                List</a>
 
                         </div>
                     </div>
