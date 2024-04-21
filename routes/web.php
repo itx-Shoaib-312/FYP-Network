@@ -7,7 +7,7 @@ use App\Http\Controllers\SelectionController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\PeerCollaborationController;
 use App\Http\Controllers\SupervisorController;
-
+use App\Http\Controllers\ContactController;
 use App\Models\Selection;
 
 use App\Http\Controllers\AnnouncementController;
@@ -26,9 +26,6 @@ Route::get('/dashboard', function () {
 // Route::get('rolebutton', function () {
 //     return view('Rolebutton');
 // });
-Route::get('usersupport', function () {
-    return view('usersupport');
-});
 
 
     Route::get('/peercollaborationproject', [PeerCollaborationController::class,'index'])->name('peercollaborationproject');
@@ -104,6 +101,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/selection/store', [SelectionController::class, 'store'])->name('selection.store');
 
 });
-
+//contact 
+Route::get('student-contact',[ContactController::class,'get_contact']);
+Route::post('send-message',[ContactController::class,'sendmessage'])->name('send-message');
+Route::get('admin-contact',[ContactController::class,'admin_contact']);
 
 require __DIR__.'/auth.php';
