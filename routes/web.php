@@ -19,6 +19,9 @@ Route::get('/', function () {
 });
 ;
 
+Route::get('/dashboard', function () {
+    return view('Frontpage');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('rolebutton', function () {
 //     return view('Rolebutton');
@@ -36,9 +39,7 @@ Route::get('usersupport', function () {
 
 
 
-    Route::get('/peercollaborationproject', function () {
-        return view('peercollaborationproject');
-    });
+
 
   Route::get('/Member', function () {
     return view('Member');
@@ -46,7 +47,7 @@ Route::get('usersupport', function () {
   Route::get('/worksubmission', function () {
     return view('workSubmission');
 })->name('worksubmission');
-
+Route::get('/worksubmission',[WorkSubmissionController::class,'show'])->name('worksubmission');
 // Route::get('/TitleSelection', function () {
 //     return view('TitleSelection');
 // });
@@ -57,9 +58,9 @@ Route::get('usersupport', function () {
 Route::get('finalizesupervisor',[SelectionController::class, 'finalized'])->name('finalized');
 Route::get('/title-selection',[SelectionController::class, 'index'])->name('selection');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route for first login page
 Route::get('/login', [CustomAuthController::class, 'showLoginForm'])->name('c');

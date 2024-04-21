@@ -1,113 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        /* CSS styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
+@extends('dashboard')
+@section('title','Work Submission')
+<link rel="stylesheet" href="{{ asset('assets/css/work.css') }}">
 
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-
-        .button {
-            display: block;
-            width: 200px;
-            margin: 10px auto;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-
-        .student-button {
-            background-color: purple;
-            color: white;
-        }
-
-        .teacher-button {
-            background-color: pink;
-            color: white;
-        }
-
-        /* CSS Styles */
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            /* margin: 10px; */
-        }
-
-        th {
-            background-color: black;
-            color: rgb(233, 230, 233);
-            padding: 8px;
-            text-align: left;
-        }
-
-        td,
-        th {
-            border-bottom: 1px solid #c8c7c7;
-            padding: 8px;
-        }
-
-        .custom-file-input {
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        .custom-file-input input[type="file"] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            outline: none;
-            cursor: inherit;
-            display: block;
-        }
-
-        .custom-file-input button {
-            display: inline-block;
-            /* padding: 6px 12px; */
-            margin-bottom: 0;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1.42857143;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            cursor: pointer;
-            user-select: none;
-            background-image: none;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            color: #fff;
-            background-color: rgb(130, 100, 130);
-            border-color: purple;
-        }
-    </style>
-
-</head>
-
-<body>
+@section('content')
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -126,7 +22,7 @@
 
     <div class="container-fluid m-5 p-5 justify-content-between">
 
-        <div class="card " style="width: 70%;">
+        <div class="card " style="width: 100%;">
             <div class="card-header ">
                 <h5 class="card-title">Work Flow And Submission</h5>
             </div>
@@ -140,20 +36,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Student Course Evaluation</td>
-                            <td>
-                                <div class="button student-button">Teacher Evaluation</div>
-                            </td>
-                            <td>
-                                <div class="custom-file-input">
-                                    <input type="file" id="fileInput">
-                                    <label for="fileInput">
-                                        <button>Choose File</button>
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach ($work as $item)
+                            <tr>
+                                <td>{{ $item->event_name }}</td>
+                                <td>
+                                    <a href="/uploads/{{ $item->file }}"
+                                        download="{{ $item->file }}">{{ $item->file }}</a>
+                                </td>
+                                <td>
+                                    <div class="custom-file-input-container">
+                                        <input type="file" id="fileInput" class="custom-file-input">
+                                        <label for="fileInput" class="custom-file-label">Choose File</label>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        @endforeach
 
                     </tbody>
                 </table>
@@ -210,9 +108,4 @@
 
 
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-            </script>
-</body>
-
-</html>
+ @endsection

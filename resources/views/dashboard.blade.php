@@ -308,7 +308,7 @@
                     </a>
                 </li>
                 <li class="py-2 list-item">
-                    <a href="javascript:;" class="has-arrow">
+                    <a href="{{ route('worksubmission') }}" class="has-arrow">
                         <div class="parent-icon"><i class='bx bx-upload'></i>
                         </div>
                         <div class="menu-title">Work Submission</div>
@@ -325,7 +325,7 @@
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item text-white" href="{{ route('announcement.index') }}">Announcement List</a>
-                           
+
                         </div>
                     </div>
                 </li>
@@ -338,7 +338,7 @@
                         <div class="menu-title">Announcement</div>
                     </a>
                 </li> --}}
-                
+
                 <li class="py-2 list-item">
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class='bx bxs-bar-chart-square'></i>
