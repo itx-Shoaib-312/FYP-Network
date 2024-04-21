@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         $user2->assignRole('student');
 
         $user2 = new User;
-        $user2->name = 'supervisor';
+        $user2->name = 'supervisor123';
         $user2->email = 'supervisor@gmail.com';
         $user2->password = Hash::make('supervisor123');
         $user2->email_verified_at = now();

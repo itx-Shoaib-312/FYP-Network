@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SelectionController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeerCollaborationController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\ContactController;
@@ -18,14 +19,10 @@ Route::get('/', function () {
     return view('indexL');
 });
 ;
+Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('Frontpage');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('rolebutton', function () {
-//     return view('Rolebutton');
-// });
+
 
 
     Route::get('/peercollaborationproject', [PeerCollaborationController::class,'index'])->name('peercollaborationproject');
@@ -54,6 +51,13 @@ Route::get('/worksubmission',[WorkSubmissionController::class,'show'])->name('wo
 // });
 Route::get('finalizesupervisor',[SelectionController::class, 'finalized'])->name('finalized');
 Route::get('/title-selection',[SelectionController::class, 'index'])->name('selection');
+
+
+
+Route::get('fypgroups',[SelectionController::class, 'fypgroups'])->name('fypgroups');
+Route::get('supervisordata',[SelectionController::class, 'supervisor'])->name('supervisor');
+Route::get('coordinatorsdata',[SelectionController::class, 'coordinatorsdata'])->name('coordinatorsdata');
+Route::get('Evaluators',[SelectionController::class, 'Evaluators'])->name('Evaluators');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

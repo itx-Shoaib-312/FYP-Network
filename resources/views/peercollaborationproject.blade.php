@@ -1,65 +1,48 @@
 @extends('dashboard')
-
-@section('title', 'peer collaboration')
-
 @section('content')
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-
-<style>
-    body {
-        background-color: #00a1b4;
-    }
-
-    .cardcontent h3 {
-        color: white;
-    }
-
-    .cardcontent h5 {
-        color: #00A1B4;
-    }
-
-    .inputfeilsset {
-        border: 1px solid #D9D9D9;
-        border-radius: 5px;
-        background-color: #CDE8EB;
-    }
-
-    .inputfeilsset input {
-        background-color: #CDE8EB;
-    }
-
-    .inputfeilsset input:focus {
-        border: none;
-        box-shadow: none;
-        outline: none;
-    }
-
-    .inputfeilsset button:focus {
-        border: none;
-    }
-
-    .inputfeilsset button.active {
-        border: none;
-    }
-
-    .addnewcard {
-        background-color: transparent;
-        border: 1px dashed white;
-    }
-
-    .addbtn {
-        color: #00A1B4;
-    }
-
-    .maincardd {
-        background-color: #F2F6FA;
-    }
-</style>
-
-
-
-
+    <style>
+        body{
+            background-color: #00a1b4;
+        }
+        .cardcontent h3{
+            color: white;
+        }
+        .cardcontent h5{
+            color: #00A1B4;
+        }
+        .inputfeilsset{
+            border: 1px solid #D9D9D9;
+            border-radius: 5px;
+            background-color: #CDE8EB;
+        }
+        .inputfeilsset input{
+            background-color: #CDE8EB;
+        }
+        .inputfeilsset input:focus{
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+        .inputfeilsset button:focus{
+            border: none;
+        }
+        .inputfeilsset button.active{
+            border: none;
+        }
+        .addnewcard{
+            background-color: transparent;
+            border: 1px dashed white;
+        }
+        .addbtn{
+            color: #00A1B4;
+        }
+        .maincardd{
+            background-color: #F2F6FA;
+        }
+    </style>
 
 
 <div class="maincontainer">
@@ -129,23 +112,51 @@
         </div>
 
     </div>
-</div>
-</div>
-</div>
-</div>
+
+
+
+
+
+    {{-- <div class="maincontainer">
+
+       <div class="container py-5 cardcontent">
+
+
+
+        <h3>Project</h3>
+      <div class="row pt-3">
+
+
+
+          <!-- Add new card section -->
+          <div class="col-md-4 mt-3 cardadbefore">
+            <div class="card rounded-4 addnewcard">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div class="pt-2">
+                    <h6 class="text-white">Add New Project</h6>
+                  </div>
+                  <div>
+                    <button type="button" class="btn bg-white addbtn" onclick="addNewProject()">+ Add </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+       </div>
+    </div> --}}
 
 
 
 
 
 
-<!-- Button trigger modal -->
+    <!-- Button trigger modal -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<!-- Include SweetAlert JS -->
+    <!-- Include SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -154,23 +165,22 @@
 <script>
     let projectCount = 1;
 
-        // Function to handle deletion confirmation
-        function confirmDelete() {
-            // This function can be implemented as per your requirements
-            console.log("Delete confirmation function");
-        }
+    // Function to handle deletion confirmation
+    function confirmDelete() {
+      // This function can be implemented as per your requirements
+      console.log("Delete confirmation function");
+    }
 
-        // Function to add a new project card
-        function addNewProject() {
-            // Create new card HTML
-            const newCard = `
+    // Function to add a new project card
+    function addNewProject() {
+      // Create new card HTML
+      const newCard = `
         <div class="col-md-4 mt-3">
           <div class="card rounded-4 maincardd">
             <div class="card-body">
               <div class="d-flex justify-content-between">
                 <div>
-              <a href="{{ route('member',['id'=>$data->id]) }}"><h5>Project ${projectCount}</h5></a>
-                            </div>
+                  <h5>Project ${projectCount}</h5>
                 </div>
                 <div>
                   <a href="#" onclick="confirmDelete()">
@@ -198,63 +208,62 @@
         </div>
       `;
 
-            // Append new card to the row
-            const row = document.querySelector('.cardadbefore');
-            row.insertAdjacentHTML('beforebegin', newCard);
+      // Append new card to the row
+      const row = document.querySelector('.cardadbefore');
+      row.insertAdjacentHTML('beforebegin', newCard);
 
-            // Increment project count for the next project
-            projectCount++;
-        }
-</script>
+      // Increment project count for the next project
+      projectCount++;
+    }
+  </script>
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Title">
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Title">
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
 <script>
-    function confirmDelete() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "you want to delete",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Here you can perform the delete operation
-                    Swal.fire(
-                        'Deleted!',
-                        'Your item has been deleted.',
-                        'success'
-                    );
-                    // For demonstration purposes, we'll just log a message
-                    console.log('Item deleted');
-                }
-            });
-        }
+  function confirmDelete() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "you want to delete",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Here you can perform the delete operation
+        Swal.fire(
+          'Deleted!',
+          'Your item has been deleted.',
+          'success'
+        );
+        // For demonstration purposes, we'll just log a message
+        console.log('Item deleted');
+      }
+    });
+  }
 </script>
 
 @endsection

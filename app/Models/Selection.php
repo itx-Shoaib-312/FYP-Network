@@ -14,6 +14,7 @@ class Selection extends Model
         'title',
         'class_name',
         'supervisor_id',
+        
     ];
     public function supervisor()
     {

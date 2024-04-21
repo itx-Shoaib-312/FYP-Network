@@ -1,18 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-     public function index(){
-        $userdatas=User::all();
-  $roles = Role::all();
+    public function index()
+    {
+        $userdatas = User::all();
+        $roles = Role::all();
 
 
-        return view('Userdata.userdata ',compact('userdatas','roles'));
+        return view('Userdata.userdata ', compact('userdatas', 'roles'));
     }
 
     public function store(Request $request)
@@ -31,8 +33,12 @@ class UserController extends Controller
         $user->save();
 
 
-        $roleName = $validatedData['role'];
-        $role = Role::where('name', $roleName)->first();
+        // $roleName = strtolower($validatedData['role']);
+        // dd($roleName->name);
+        // $role = Role::where('name', $roleName)->first();
+        $roleId = $validatedData['role'];
+        $role = Role::find($roleId);
+
         if ($role) {
             $user->assignRole($role);
         } else {
@@ -44,37 +50,35 @@ class UserController extends Controller
 
 
 
-public function update(Request $request, $id)
+    public function update(Request $request, $id)
 
-{
-    $request->validate([
-        'name' => 'required|string',
-        'email' => 'required|string',
-        'password' => 'required|string',
-    ]);
-    $userdata  = User::findOrFail($id);
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+        $userdata  = User::findOrFail($id);
 
-    $userdata ->name = $request->input('name');
-    $userdata ->email = $request->input('email');
-    $userdata ->password = $request->input('password');
-    $userdata ->save();
+        $userdata->name = $request->input('name');
+        $userdata->email = $request->input('email');
+        $userdata->password = $request->input('password');
+        $userdata->save();
 
-    return redirect()->back()->with('success', 'users updated successfully');
+        return redirect()->back()->with('success', 'users updated successfully');
+    }
+
+
+    public function destroy($id)
+    {
+        $userdata = User::findOrFail($id);
+        $userdata->delete();
+
+        return redirect()->back()->with('success', 'userdata  deleted successfully');
+    }
+
+    public function workSubmission()
+    {
+        return view('workSubmission');
+    }
 }
-
-
-public function destroy($id)
-{
-    $userdata = User::findOrFail($id);
-    $userdata ->delete();
-
-    return redirect()->back()->with('success', 'userdata  deleted successfully');
-}
-
-public function workSubmission()
-{
-    return view('workSubmission');
-}
-
-}
-
