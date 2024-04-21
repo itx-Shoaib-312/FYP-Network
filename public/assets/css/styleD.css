@@ -107,3 +107,42 @@ header .current-date {
   background-color: #1abc9c;
   color: #fff;
 }
+
+.notification-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.notification-number {
+  position: absolute;
+  top: -9px;
+  right: -14px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0px 6px;
+  font-size: 12px;
+}
+
+/* Adjustments for the notification list */
+.notification-list {
+  position: fixed;
+  top: 50px; /* Adjust this value based on your preference */
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 999; /* Ensure the list appears above other elements */
+}
+
+.notification-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.notification-list ul li {
+  margin-bottom: 5px;
+}
