@@ -157,7 +157,10 @@
                         <tr>
                             <th>FYP Event Step</th>
                             <th> Performas </th>
+                            @if(auth()->check() && ! auth()->user()->hasRole('coordinator') )
+
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -168,10 +171,13 @@
                                     <a href="/worksubmit/{{ $item->file }}"
                                         download="{{ $item->file }}">{{ $item->file }}</a>
                                 </td>
+                            @if(auth()->check() && ! auth()->user()->hasRole('coordinator') )
+
                                 <td>
                                     <a href="{{ route('delete.work', $item->id) }}" class="btn btn-primary">
                                         <i class="fa fa-trash"></i>Delete</a>
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
 
