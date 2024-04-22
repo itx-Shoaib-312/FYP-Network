@@ -52,7 +52,7 @@
         </div>
     </div>
 </div>
-@unlessrole('admin')
+@unlessrole(['admin', 'coordinator'])
 <div class="notification-icon" onclick="toggleNotificationList()">
     <span class="fa fa-bell"></span>
     <span class="notification-number">{{ count($notifications) }}</span>

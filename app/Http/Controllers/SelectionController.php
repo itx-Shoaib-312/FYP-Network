@@ -41,6 +41,7 @@ class SelectionController extends Controller
             ]);
             // dd($request);
             $selection = new Selection();
+            $selection->user_id = $request->user()->id;
             $selection->title = $request['title'];
             $selection->class_name = $request['class_name'];
             $selection->supervisor_id = $request['supervisor_id'];
@@ -78,71 +79,75 @@ class SelectionController extends Controller
         // dd($selections);
         return view('finalizesupervisor', compact('selections'));
     }
-  
+
     public function fypgroups()
-{
-    if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
-        $fypgroups = Selection::with('member')->get();
-    } elseif (Auth::user()->hasRole('student')) {
-        $fypgroups = Auth::user()->member->map(function ($member) {
-            return $member->selection;
-        });
+    {
+        if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
+            $fypgroups = Selection::with('member')->get();
+        } elseif (Auth::user()->hasRole('student')) {
+            $fypgroups = Auth::user()->member->map(function ($member) {
+                return $member->selection;
+            });
+        } elseif (Auth::user()->hasRole('supervisor')) {
+            $fypgroups = Auth::user()->member->map(function ($member) {
+                return $member->selection;
+            });
+        }
+
+        return view('fypgrouosdetails', compact('fypgroups'));
     }
-    elseif (Auth::user()->hasRole('supervisor')) {
-        $fypgroups = Auth::user()->member->map(function ($member) {
-            return $member->selection;
-        });
-    }
-    
-    return view('fypgrouosdetails', compact('fypgroups'));
-}
 
     public function supervisor()
-{
-    if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
-        
-        $supervisors = User::whereHas('roles', function ($query) {
-            $query->where('name', 'supervisor');
-        })->get();
-    } elseif (Auth::user()->hasRole('student')) {
-       
-        $supervisors = User::whereHas('roles', function ($query) {
-            $query->where('name', 'supervisor');
-        })->where('id', Auth::id())->get();
-    } elseif (Auth::user()->hasRole('supervisor')) {
-      
-        $supervisors = User::where('id', Auth::id())->get();
+    {
+        if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
+
+            $supervisors = Supervisor::all();
+           
+        } elseif (Auth::user()->hasRole('student')|| Auth::user()->hasRole('supervisor')) {
+
+            $userId = auth()->id();
+            $selections = Selection::where('user_id', $userId)->get();
+            if ($selections->isNotEmpty()) {
+
+                $supervisorIds = $selections->pluck('supervisor_id')->unique()->toArray();
+
+
+                $supervisors = Supervisor::whereIn('id', $supervisorIds)->get();
+            } else {
+                $supervisors = collect();
+            }
+         
+        }
+
+        return view('supervisordetails', compact('supervisors'));
     }
 
-    return view('supervisordetails', compact('supervisors'));
-}
+    public function coordinatorsdata()
+    {
+        if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
 
-public function coordinatorsdata()
-{
-    if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
-       
-        $coordinators = User::whereHas('roles', function ($query) {
-            $query->where('name', 'coordinator');
-        })->get();
-    } elseif (Auth::user()->hasRole('student')) {
-      
-        $coordinators = User::whereHas('roles', function ($query) {
-            $query->where('name', 'coordinator');
-        })->where('id', Auth::id())->get();
-    } elseif (Auth::user()->hasRole('supervisor')) {
-       
-        $coordinators = User::where('id', Auth::id())->get();
+            $coordinators = User::whereHas('roles', function ($query) {
+                $query->where('name', 'coordinator');
+            })->get();
+        } elseif (Auth::user()->hasRole('student')) {
+
+            $coordinators = User::whereHas('roles', function ($query) {
+                $query->where('name', 'coordinator');
+            })->where('id', Auth::id())->get();
+        } elseif (Auth::user()->hasRole('supervisor')) {
+
+            $coordinators = User::where('id', Auth::id())->get();
+        }
+
+        return view('coordinatorsdetails', compact('coordinators'));
     }
-
-    return view('coordinatorsdetails', compact('coordinators'));
-}
 
     public function Evaluators()
     {
-     
-        
-          
-    
+
+
+
+
         return view('Evaluatorsdetails');
     }
 }

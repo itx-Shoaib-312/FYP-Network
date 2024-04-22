@@ -13,7 +13,9 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Email</th>
+                        <th>Designation</th>
+                        <th>Total Slots</th>
+                        <th>Available Slots</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,7 +23,9 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $supervisor?->name }}</td>
-                        <td>{{ $supervisor?->email }}</td>
+                        <td>{{ $supervisor?->designation }}</td>
+                        <td>{{ $supervisor?->total_slots }}</td>
+                        <td>{{ $supervisor?->available_slots }}</td>
                     </tr>
                     @endforeach
                 </tbody>
