@@ -19,6 +19,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Coordinator Name</th>
                             <th>Designation</th>
                             <th>Total Slots</th>
                             <th>Available Slots</th>
@@ -31,6 +32,7 @@
                         @foreach ($supervisors as $supervisor)
                             <tr>
                                 <td>{{ $supervisor->name }}</td>
+                                <td>{{ $supervisor->user->name }}</td>
                                 <td>{{ $supervisor->designation }}</td>
                                 <td>{{ $supervisor->total_slots }}</td>
                                 <!-- Assuming 'office' is a field in your 'supervisors' table -->
