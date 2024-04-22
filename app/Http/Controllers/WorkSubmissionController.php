@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Event;
+use App\Models\worksubmission;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class WorkSubmissionController extends Controller
@@ -10,7 +12,8 @@ class WorkSubmissionController extends Controller
     public function show()
     {
         $work=Event::all();
-        return view('workSubmission',compact('work'));
+        $submitwork=worksubmission::all();
+        return view('workSubmission',compact('work','submitwork'));
     }
     //
     public function SubmitWork(Request $request)
@@ -38,4 +41,28 @@ class WorkSubmissionController extends Controller
 
 
     }
+
+    public function AddWork(Request $request)
+    {
+        // dd($request->all());
+
+        $file = $request->file('file');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('worksubmit', $fileName);
+
+        $work=new worksubmission;
+        $work->event_name=$request->event_name;
+        $work->file=$filePath;
+        $work->user_id=$request->user_id;
+        $work->save();
+        return back();
+    }
+
+    public function DeleteWork($id)
+    {
+        $work=worksubmission::find($id);
+        $work->delete();
+        return back();
+    }
+
 }

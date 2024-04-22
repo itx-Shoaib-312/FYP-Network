@@ -13,7 +13,7 @@ use App\Models\Selection;
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\WorkSubmissionController;
-
+use App\Models\worksubmission;
 
 Route::get('/', function () {
     return view('indexL');
@@ -92,6 +92,8 @@ Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])-
 // Route::get('/workSubmission', [UserController::class, 'workSubmission'])->name('workSubmission');Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])->name('other.login');
 Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])->name('other.login');
 Route::post('/SubmitWork', [WorkSubmissionController::class, 'SubmitWork'])->name('SubmitWork');
+Route::post('/add-work',[WorkSubmissionController::class,'AddWork'])->name('add.work');
+Route::get('/delete-work/{id}',[WorkSubmissionController::class,'DeleteWork'])->name('delete.work');
 Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])->name('other.login');
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -105,7 +107,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/selection/store', [SelectionController::class, 'store'])->name('selection.store');
 
 });
-//contact 
+//contact
 Route::get('student-contact',[ContactController::class,'get_contact']);
 Route::post('send-message',[ContactController::class,'sendmessage'])->name('send-message');
 Route::get('admin-contact',[ContactController::class,'admin_contact']);
