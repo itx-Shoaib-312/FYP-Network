@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('supervisor', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
           $table->string('name');
         $table->string('designation'); // Changed column name to lowercase
         $table->integer('total_slots'); // Changed column name to lowercase

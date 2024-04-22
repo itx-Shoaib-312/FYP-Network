@@ -24,9 +24,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $fypgroup?->title }}</td>
                         <td>{{ $fypgroup?->class_name }}</td>
-                        <td>{{ $fypgroup?->supervisor->name }}</td>
+                        <td>{{ $fypgroup?->supervisor?->name }}</td>
                         <td>
-                            @foreach ($fypgroup->member as $member)
+                            @foreach ($fypgroup?->member as $member)
 
                             ARID: {{ $member?->group_member_1 }} - Name: {{ $member?->group_member_1_name }} <br>
                             ARID: {{ $member?->group_member_2 }} - Name: {{ $member?->group_member_2_name }} <br>

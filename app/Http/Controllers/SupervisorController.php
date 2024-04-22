@@ -16,11 +16,13 @@ class SupervisorController extends Controller
 
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|string',
             'designation' => 'required|string',
             'total_slots' => 'required|integer',
             'available_slots' => 'required|integer',
+            
             'status' => 'required|in:0,1',
         ]);
 
@@ -31,6 +33,7 @@ class SupervisorController extends Controller
         $supervisor->designation = $validatedData['designation'];
         $supervisor->total_slots = $validatedData['total_slots'];
         $supervisor->available_slots = $validatedData['available_slots'];
+        $supervisor->user_id = $request->user()?->id;
         $supervisor->status = $status;
         $supervisor->save();
 
