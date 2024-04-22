@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supervisor;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SupervisorController extends Controller
@@ -10,8 +11,8 @@ class SupervisorController extends Controller
     //
     public function index(){
         $supervisors=Supervisor::all();
-
-        return view('supervisor.supervisor',compact('supervisors'));
+        $coordinators = User::where('type', 'coordinator')->get();
+        return view('supervisor.supervisor',compact('supervisors', 'coordinators'));
     }
 
     public function store(Request $request)
@@ -24,6 +25,7 @@ class SupervisorController extends Controller
             'available_slots' => 'required|integer',
             
             'status' => 'required|in:0,1',
+            'coordinator' => 'required|exists:users,id',
         ]);
 
         $status = ($validatedData['status'] == '1') ? 1 : 0;
@@ -33,7 +35,8 @@ class SupervisorController extends Controller
         $supervisor->designation = $validatedData['designation'];
         $supervisor->total_slots = $validatedData['total_slots'];
         $supervisor->available_slots = $validatedData['available_slots'];
-        $supervisor->user_id = $request->user()?->id;
+        // $supervisor->user_id = $request->user()?->id;
+        $supervisor->user_id = $request->coordinator;
         $supervisor->status = $status;
         $supervisor->save();
 
