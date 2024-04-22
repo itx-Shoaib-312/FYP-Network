@@ -16,6 +16,7 @@
                 <div>
                     <h1>Title Selection</h1>
                 </div>
+                <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
                 <div class="form-field">
                     <input type="text" name="title" placeholder="Title Name" required />

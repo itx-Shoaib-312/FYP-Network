@@ -9,7 +9,7 @@
 <div class="container ">
     <div class="row">
         <div class="col-md-12">
-            @if(in_array('admin', $userRoles))
+            @if(in_array('admin', $userRoles) || in_array('coordinator', $userRoles))
 
             <div class="text-right mb-3">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserdataModal">
@@ -39,7 +39,7 @@
 
 
 
-                        @if(in_array('admin', $userRoles))
+                        @if(in_array('admin', $userRoles) || in_array('coordinator', $userRoles))
                         <td>
                             <button type="button" class="btn btn-primary editBtn"
                                 data-target="#editModal-{{ $userdata->id }}" data-toggle="modal">

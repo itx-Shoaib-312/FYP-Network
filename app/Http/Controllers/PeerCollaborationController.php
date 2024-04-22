@@ -20,7 +20,7 @@ class PeerCollaborationController extends Controller
     $mem_1 = User::where('arid_no',$members['member_no_1'])->first();
     $mem_2 = User::where('arid_no',$members['member_no_2'])->first();
     $mem_3 = User::where('arid_no',$members['member_no_3'])->first();
-    $detail = MemberDetail::where('member_id',$mem_1->id)->get();
+    $detail = MemberDetail::where('member_id',$mem_1?->id)->get();
     // dd($mem_1->id);
 // dd($detail);
     return view('Member',compact('members','mem_1','mem_2','mem_3','detail'));
