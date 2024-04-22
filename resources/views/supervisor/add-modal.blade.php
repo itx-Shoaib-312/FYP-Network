@@ -29,6 +29,8 @@
                         <label for="available_slots">Available Slots</label>
                         <input type="number" class="form-control" id="available_slots" name="available_slots">
                     </div>
+                    <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select class="form-control" id="status" name="status">
