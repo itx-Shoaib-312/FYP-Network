@@ -58,9 +58,14 @@
 
                 <div class="card-footer text-muted">
                     <!-- Button trigger modal -->
+
+                    @if(auth()->check() && ! auth()->user()->hasRole('student') )
+
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add Row
                     </button>
+
+                    @endif
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
