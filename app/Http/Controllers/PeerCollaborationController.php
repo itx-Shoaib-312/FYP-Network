@@ -17,17 +17,18 @@ class PeerCollaborationController extends Controller
    }
    public function members($id){
     $members = Member::where('selection_id',$id)->first();
-    $mem_1 = User::where('arid_no',$members['member_no_1'])->first();
-    $mem_2 = User::where('arid_no',$members['member_no_2'])->first();
-    $mem_3 = User::where('arid_no',$members['member_no_3'])->first();
-    $detail = MemberDetail::where('member_id',$mem_1?->id)->get();
+    $mem_1 = User::where('arid_no',$members['group_member_1'])->first();
+    $mem_2 = User::where('arid_no',$members['group_member_2'])->first();
+    $mem_3 = User::where('arid_no',$members['group_member_3'])->first();
+    $detail = MemberDetail::where('member_id',$mem_1->id)->get();
     // dd($mem_1->id);
 // dd($detail);
     return view('Member',compact('members','mem_1','mem_2','mem_3','detail'));
 
    }
    public function add_member_details(Request $request)  {
-    $members = Member::where('member_no_1',auth()->user()->arid_no)->first();
+    $members = Member::where('group_member_1',auth()->user()->arid_no)->first();
+    // dd($members);
     $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string|max:1000',

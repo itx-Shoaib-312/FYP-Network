@@ -102,7 +102,7 @@ class SelectionController extends Controller
         if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
 
             $supervisors = Supervisor::all();
-           
+
         } elseif (Auth::user()->hasRole('student')|| Auth::user()->hasRole('supervisor')) {
 
             $userId = auth()->id();
@@ -116,7 +116,7 @@ class SelectionController extends Controller
             } else {
                 $supervisors = collect();
             }
-         
+
         }
 
         return view('supervisordetails', compact('supervisors'));

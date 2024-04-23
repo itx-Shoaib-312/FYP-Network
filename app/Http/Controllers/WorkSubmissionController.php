@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class WorkSubmissionController extends Controller
 {
 
+
     public function show()
     {
         $work=Event::all();
@@ -27,12 +28,12 @@ class WorkSubmissionController extends Controller
 
         $file = $request->file('file');
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $filePath = $file->storeAs('uploads', $fileName);
+        $file->storeAs('uploads', $fileName);
 
 
         $event = new Event();
         $event->event_name = $request->input('event');
-        $event->file = $filePath;
+        $event->file = $fileName;
         $event->user_id = $request->input('user_id');
         $event->save();
 
@@ -48,11 +49,11 @@ class WorkSubmissionController extends Controller
 
         $file = $request->file('file');
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $filePath = $file->storeAs('worksubmit', $fileName);
+        $file->storeAs('worksubmit', $fileName);
 
         $work=new worksubmission;
         $work->event_name=$request->event_name;
-        $work->file=$filePath;
+        $work->file=$fileName;
         $work->user_id=$request->user_id;
         $work->save();
         return back();
@@ -65,4 +66,13 @@ class WorkSubmissionController extends Controller
         return back();
     }
 
+    public function download($file)
+    {
+        return response()->download(storage_path('/app/worksubmit/'. $file));
+    }
+
+    public function filedownload($file)
+    {
+        return response()->download(storage_path('/app/uploads/'. $file));
+    }
 }

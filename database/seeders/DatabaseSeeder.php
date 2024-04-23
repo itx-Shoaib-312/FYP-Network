@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
           $this->call(RoleSeeder::class);
 
           $this->call(AnnouncementSeeder::class);
-           
-            
+
+
 
         $user1 = new User;
         $user1->name = 'admin';
@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $user2->email = 'student@gmail.com';
         $user2->password = Hash::make('student123');
         $user2->email_verified_at = now();
+        $user2->arid_no='20-ARID-302';
         $user2->save();
         $user2->assignRole('student');
 

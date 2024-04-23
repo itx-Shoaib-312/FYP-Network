@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -33,7 +33,7 @@
 
 
 
-    <link href="sass/main.css" rel="stylesheet">
+    <link href="{{asset('sass/main.css')}}" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/styleus.css') }}">
-    
+
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
 
@@ -249,10 +249,10 @@
 
             <div class="ms-5 mt-5  ">
                 <div class="logo-icon logo-name ">
-                    <img src="./assets/images/Logo.jpeg" class="logo-img mt-5  rounded-pill w-100   " alt="">
+                    <img src="{{asset('assets/images/Logo.jpeg')}}" class="logo-img mt-5  rounded-pill w-100   " alt="">
                 </div>
                 <div class="logo-namesecond   ">
-                    <img src="./assets/images/Logo.jpeg" class="logo-img rounded-pill" alt=""
+                    <img src="{{asset('assets/images/Logo.jpeg')}}" class="logo-img rounded-pill" alt=""
                         style="width: 130px;">
                 </div>
             </div>
@@ -413,10 +413,10 @@
             <ul class="img-list mx-3">
                 <li>
                     <div class="logo-icon logo-name my-3">
-                        <img src="./assets/images/mng.jpg" class="logo-img  w-75  " alt="">
+                        <img src="{{asset('assets/images/mng.jpg')}}" class="logo-img  w-75  " alt="">
                     </div>
                     <div class="logo-namesecond  mt-4 ">
-                        <img src="./assets/images/mng.jpg" class="logo-img " alt="" style="width: 130px;">
+                        <img src="{{asset('assets/images/mng.jpg')}}" class="logo-img " alt="" style="width: 130px;">
                     </div>
                     <!-- <img class="mg" src="./assets/images/mng.jpg" alt=""> -->
                 </li>
@@ -444,15 +444,15 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 
-    <script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+    <script src="{{asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
 
-    <script src="assets/js/index.js"></script>
+    <script src="{{asset('assets/js/index.js')}}"></script>
 
 
-    <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

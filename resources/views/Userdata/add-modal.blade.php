@@ -34,13 +34,35 @@
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                             @endforeach
                         </select>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="addUserdataBtn">Save changes</button>
-                        </div>
+                    </div>
+                    <div class="form-group" id="aridNoField" style="display: none;">
+                        <label for="arid_no">Arid no</label>
+                        <input type="text" class="form-control" name="arid_no" id="arid_no"
+                            placeholder="xx-ARID-xxxx"
+                            title="Please enter in the format 'xx-ARID-xxxx'">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="addUserdataBtn">Save changes</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("role").addEventListener("change", function () {
+        var selectedRoleId = this.value;
+        var aridNoField = document.getElementById("aridNoField");
+        if (selectedRoleId === "2")
+        {
+            aridNoField.style.display = "block";
+            document.getElementById("arid_no").required = true; // Make the field required
+        }
+         else
+          {
+            aridNoField.style.display = "none";
+            document.getElementById("arid_no").required = false; // Remove the required attribute
+        }
+    });
+</script>

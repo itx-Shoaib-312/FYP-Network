@@ -39,8 +39,8 @@
                             <tr>
                                 <td>{{ $item->event_name }}</td>
                                 <td>
-                                    <a href="/uploads/{{ $item->file }}"
-                                        download="{{ $item->file }}">{{ $item->file }}</a>
+                                    <a href="{{route('download.file',$item->file)}}">
+                                        {{$item->file}}</a>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -165,8 +165,9 @@
                             <tr>
                                 <td>{{ $item->event_name }}</td>
                                 <td>
-                                    <a href="/worksubmit/{{ $item->file }}"
-                                        download="{{ $item->file }}">{{ $item->file }}</a>
+                                    <a href="{{route('download',$item->file)}}">
+                                        {{$item->file}}</a>
+
                                 </td>
                                 <td>
                                     <a href="{{ route('delete.work', $item->id) }}" class="btn btn-primary">
