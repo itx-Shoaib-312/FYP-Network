@@ -14,7 +14,7 @@
                 <form accept="{{ route('supervisor.store') }}" method="POST" id="addSupervisorForm">
                     @csrf
                     <div class="form-group">
-                        <label for="name"  >Name</label>
+                        <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
@@ -36,6 +36,15 @@
                         <select class="form-control" id="status" name="status">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="coordinator">Coordinators</label>
+                        <select class="form-control" id="coordinator" name="coordinator">
+                            @foreach ($coordinators as $coordinator)
+                                <option value="{{ $coordinator->id }}">{{ $coordinator->name }}</option>
+                            @endforeach
                         </select>
 
                     </div>

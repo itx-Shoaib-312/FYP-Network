@@ -75,8 +75,13 @@ class SelectionController extends Controller
 
     public function finalized()
     {
-        $selections = Selection::with('supervisor')->get();
-        // dd($selections);
+        if (Auth::user()->hasRole('student')){
+        $selections = Selection::with('supervisor')->where('user_id',Auth::user()->id)->get();
+    }else{
+            $selections = Selection::with('supervisor')->get();
+
+        }
+
         return view('finalizesupervisor', compact('selections'));
     }
 

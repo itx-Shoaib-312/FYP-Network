@@ -302,6 +302,7 @@
                         <div class="menu-title">Finalized Supervisor</div>
                     </a>
                 </li>
+                @if(auth()->check() && !(auth()->user()->hasRole('admin') || auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('coordinator')))
                 <li class="py-2 list-item">
                     <a href="/title-selection" class="has-arrow">
                         <div class="parent-icon"><i class='bx bxs-notepad'></i>
@@ -309,6 +310,9 @@
                         <div class="menu-title">Title Selection</div>
                     </a>
                 </li>
+                @endif
+                @if(auth()->check() && !auth()->user()->hasRole('admin'))
+
                 <li class="py-2 list-item">
                     <a href="/peercollaborationproject" class="has-arrow">
                         <div class="parent-icon"><i class='bx bx-male-female'></i>
@@ -316,6 +320,11 @@
                         <div class="menu-title">Peer Collaboration</div>
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->check() && !(auth()->user()->hasRole('admin') || auth()->user()->hasRole('supervisor')))
+
+
                 <li class="py-2 list-item">
                     <a href="{{ route('worksubmission') }}" class="has-arrow">
                         <div class="parent-icon"><i class='bx bx-upload'></i>
@@ -323,6 +332,9 @@
                         <div class="menu-title">Work Submission</div>
                     </a>
                 </li>
+                @endif
+                @if(auth()->check() && !(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('student') ))
+
                 <li class="py-2 ">
                     <div class="dropdown">
                         <button
@@ -339,6 +351,7 @@
                         </div>
                     </div>
                 </li>
+                @endif
 
 
 
@@ -370,6 +383,8 @@
                         <div class="menu-title">RBAC</div>
                     </a>
                 </li>
+                @if(auth()->check() && !auth()->user()->hasRole('admin'))
+
                 <li class="py-2 list-item">
                     <a href="/student-contact" class="has-arrow">
                         <div class="parent-icon"><i class='bx bx-cog'></i>
@@ -377,6 +392,23 @@
                         <div class="menu-title">User Support</div>
                     </a>
                 </li>
+
+                @endif
+
+                @if(auth()->check() && auth()->user()->hasRole('admin'))
+
+                <li class="py-2 list-item">
+                    <a href="/admin-contact" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-cog'></i>
+                        </div>
+                        <div class="menu-title">User Support</div>
+                    </a>
+                </li>
+                @endif
+
+                @if(auth()->check() && !(auth()->user()->hasRole('supervisor') || auth()->user()->hasRole('student') ||  auth()->user()->hasRole('coordinator') ))
+
+
                 <li class="py-2 ">
                     <div class="dropdown">
                         <button
@@ -393,6 +425,7 @@
                         </div>
                     </div>
                 </li>
+                @endif
 
 
 

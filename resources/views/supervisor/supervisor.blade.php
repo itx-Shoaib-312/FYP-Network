@@ -9,20 +9,29 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                @if(auth()->check() && !(auth()->user()->hasRole('student') || auth()->user()->hasRole('coordinator') ))
+
+
                 <div class="text-right mb-3">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSupervisorModal">
                         Add Supervisor
                     </button>
                 </div>
+                @endif
                 @include('supervisor.add-modal')
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Coordinator Name</th>
                             <th>Designation</th>
                             <th>Total Slots</th>
                             <th>Available Slots</th>
+                            @if(auth()->check() && !(auth()->user()->hasRole('student') || auth()->user()->hasRole('coordinator') ))
+
+
                             <th>Action</th>
+                            @endif
 
                         </tr>
                     </thead>
@@ -31,6 +40,7 @@
                         @foreach ($supervisors as $supervisor)
                             <tr>
                                 <td>{{ $supervisor->name }}</td>
+                                <td>{{ $supervisor->user->name }}</td>
                                 <td>{{ $supervisor->designation }}</td>
                                 <td>{{ $supervisor->total_slots }}</td>
                                 <!-- Assuming 'office' is a field in your 'supervisors' table -->
@@ -47,6 +57,7 @@
                                     @endif
                                 </td>
  --}}
+                @if(auth()->check() && !(auth()->user()->hasRole('student') || auth()->user()->hasRole('coordinator') ))
 
                                 <td>
                                     <button type="button" class="btn btn-primary editBtn"
@@ -65,6 +76,7 @@
 
 
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
 

@@ -18,4 +18,9 @@ class Supervisor extends Model
     {
         return $this->hasMany(Selection::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

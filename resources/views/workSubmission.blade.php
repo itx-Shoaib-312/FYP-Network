@@ -58,9 +58,14 @@
 
                 <div class="card-footer text-muted">
                     <!-- Button trigger modal -->
+
+                    @if(auth()->check() && ! auth()->user()->hasRole('student') )
+
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add Row
                     </button>
+
+                    @endif
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -157,7 +162,10 @@
                         <tr>
                             <th>FYP Event Step</th>
                             <th> Performas </th>
+                            @if(auth()->check() && ! auth()->user()->hasRole('coordinator') )
+
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -169,10 +177,13 @@
                                         {{$item->file}}</a>
 
                                 </td>
+                            @if(auth()->check() && ! auth()->user()->hasRole('coordinator') )
+
                                 <td>
                                     <a href="{{ route('delete.work', $item->id) }}" class="btn btn-primary">
                                         <i class="fa fa-trash"></i>Delete</a>
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
 
