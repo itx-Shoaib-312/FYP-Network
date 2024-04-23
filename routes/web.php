@@ -92,8 +92,10 @@ Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])-
 // Route::get('/workSubmission', [UserController::class, 'workSubmission'])->name('workSubmission');Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])->name('other.login');
 Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])->name('other.login');
 Route::post('/SubmitWork', [WorkSubmissionController::class, 'SubmitWork'])->name('SubmitWork');
+Route::get('/download/{file}', [WorkSubmissionController::class,'filedownload'])->name('download.file');
 Route::post('/add-work',[WorkSubmissionController::class,'AddWork'])->name('add.work');
 Route::get('/delete-work/{id}',[WorkSubmissionController::class,'DeleteWork'])->name('delete.work');
+Route::get('/files/{file}', [WorkSubmissionController::class,'download'])->name('download');
 Route::get('/login/other', [CustomAuthController::class, 'showOtherLoginForm'])->name('other.login');
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');

@@ -19,6 +19,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string',
@@ -30,6 +31,7 @@ class UserController extends Controller
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
+        $user->arid_no=$request->arid_no;
         $user->save();
 
 
