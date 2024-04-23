@@ -75,8 +75,13 @@ class SelectionController extends Controller
 
     public function finalized()
     {
-        $selections = Selection::with('supervisor')->get();
-        // dd($selections);
+        if (Auth::user()->hasRole('student')){
+        $selections = Selection::with('supervisor')->where('user_id',Auth::user()->id)->get();
+    }else{
+            $selections = Selection::with('supervisor')->get();
+
+        }
+
         return view('finalizesupervisor', compact('selections'));
     }
 
@@ -102,7 +107,7 @@ class SelectionController extends Controller
         if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('coordinator')) {
 
             $supervisors = Supervisor::all();
-           
+
         } elseif (Auth::user()->hasRole('student')|| Auth::user()->hasRole('supervisor')) {
 
             $userId = auth()->id();
@@ -116,7 +121,7 @@ class SelectionController extends Controller
             } else {
                 $supervisors = collect();
             }
-         
+
         }
 
         return view('supervisordetails', compact('supervisors'));
